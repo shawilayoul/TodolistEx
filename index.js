@@ -1,26 +1,35 @@
 //const task = document.querySelector("#task");
+
+document.addEventListener('DOMContentLoaded', function() {
 const form = document.querySelector("#form");
 const list = document.querySelector("#list");
-
-let lists = [];
-form.addEventListener("submit", (e) => {
-    e.preventDefault()
-  let task = document.querySelector("#task").value.trim();
-  if(task !== ''){
-    const template = `
+const lists = JSON.parse(localStorage.getItem('task')) || [];
+function display (){
+    list.innerHTML = ''
+    lists.forEach(element => {
+        const template = `
     <div class="flex gap-2">
-    <div>${task}</div>
+    <div>${element}</div>
     <button class="delete bg-red-400 text-white p-1 rounded">Delete</button>
     <button class="update bg-blue-400 text-white p-1 rounded">Update</button>
     </div>
     `
     list.innerHTML += template
-    localStorage.setItem('task',JSON.stringify(todos))
-    task = '';
+    });
+    
+}
+display()
+form.addEventListener("submit", (e) => {
+    e.preventDefault()
+  let task = document.querySelector("#task").value.trim();
+  if(task !== ''){
+    lists.push(task)
+    localStorage.setItem('task',JSON.stringify(lists))
+    display()
+    task.value = '';
   }else{
     alert('please enter a valid task')
   }
-  document.querySelector("#task") = ""
 });
 
 list.addEventListener('click',(e)=>{
@@ -35,3 +44,4 @@ list.addEventListener('click',(e)=>{
        task =   e.target.parentNode;
     }
    })
+})
