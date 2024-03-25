@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ToDoList</title>
+</head>
+<body>
+
+    <nav class="bg-blue-500 h-12 p-2">
+        <h3 class="text-white">To Do List</h3>
+    </nav>
+     <main class="flex justify-center h-lvh mt-2">
+        <div class="flex flex-col gap-3">
+            <form action="#"  id="form"class="">
+                <input type="text" id="task" placeholder="Enter your task" class="border-2 p-1 rounded">
+                <button class="bg-blue-200 p-1 rounded">Add</button>
+            </form>
+            <div id="list" class="flex flex-col gap-2"></div>
+        </div>
+     </main>
+    <script src="index.js"></script>
+</body>
+</html>
